@@ -1,0 +1,207 @@
+html{
+	width:100%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+}
+body{
+	width:100%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+	background:url(../images/backdrop.jpg) no-repeat center left fixed;
+
+	  
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+
+h1{
+	font-size:40px;
+	font-weight:bold;
+	font-family:arial;
+	font-color:black;
+	margin:20px auto 0px auto;
+	text-align:center;
+	border-bottom:10px groove black;
+	width:400px;
+}
+h2{
+	font-size:30px;
+	font-weight:bold;
+	font-family:arial;
+	font-color:black;
+	text-align:center;
+	margin:0 auto 0 auto;
+	padding-bottom:20px;
+}
+
+h4{
+	font-size:18px;
+	font-weight:bold;
+	font-family:arial;
+	padding-top:20px;
+}
+.westHeader{
+	width:100%;
+	height:100px;
+	background-color:green;
+}
+.gameWrapper{
+	width:70%;
+	height:600px;
+	border:1px solid black;
+	margin:0px auto 0px auto;
+}
+.gameLCol{
+	width:30%;
+	height:100%;
+	float:left;
+	
+	padding:0px;
+	margin:0px;
+	background-color:#3E180B;
+	
+}
+.gameLColInner{
+	width:92%;
+	height:92%;
+	margin:auto;
+	background-color:#ffffff;
+}
+#guessPic{
+	width:200px;
+	height:200px;
+	margin:20px auto 0 auto;
+	background:url(../images/wantedBlank-01.jpg);
+
+}
+#victoryTitle{
+	font-family:'Alfa Slab One', cursive;
+	font-size:20px;
+	padding-top:20px;
+	color:#401503;
+	text-align:center;
+	width:100%;
+}
+.wantedText{
+	font-size:40px;
+	font-family: 'Ultra', serif;
+	color:#401503;
+	text-align:center;
+	margin-top:30px;
+}
+.gameRCol{
+	width:70%;
+	height:100%;
+	float:right;
+	text-align:center;
+	
+	padding:0px;
+	margin:0px;
+	background-color:white;
+	/*background:url(../images/oldPaperTexture2.jpg) no-repeat center left fixed;
+	  
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;*/
+		
+}
+}
+.gameContent{
+	width:100%;
+
+	margin:0px auto 0px auto;
+}
+.wordTilesBorder{
+	width:335px;
+	height:127px;
+	margin:0 auto 0 auto;
+border-style: solid;
+border-width:27px;
+-moz-border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 round stretch;
+-webkit-border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 round stretch;
+-o-border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 round stretch;
+border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 fill round stretch;
+
+}
+.wordTilesWrapper{
+	width:335px;
+	height:127px;
+	background-color:white;
+
+	margin:0 auto 0 auto;
+	
+}
+#wordTiles{
+	width:335px;
+	height:auto;
+	background-color:white;
+	margin:0 auto 0 auto;
+	padding-top:30px;
+	padding-bottom:30px;
+	position:relative;
+	top:20px;
+
+
+	
+}
+.livesBox{
+	background-image:url(../images/boxBackDrop-01.png);
+	width:150px;
+	height:57px;
+	color:white;
+}
+.livesBox p{
+	font-family:'Alfa Slab One', cursive;
+	padding-top:10px;
+}
+
+
+.westFooter{
+	width:100%;
+	height:100px;
+	background-color:black;
+		color:white;
+
+
+}
+h2{
+	font-family:'Alfa Slab One', cursive;
+	font-size:20px;
+	padding-top:20px;
+	color:#401503;
+	text-align:center;
+}
+h4{
+	font-size:14px;
+	font-family: 'Alfa Slab One', cursive;
+
+
+	text-align: center;
+
+}
+.westFooter a{
+	text-decoration: none;
+		color:white;
+}
+.westFooter a:hover{
+	color:#F04F23;
+}
+.tileStyle{
+	width:30px;
+	height:30px;
+	border:1px solid black;
+	background-color:yellow;
+	
+
+}
+.blankStyle{
+	width:30px;
+	height:30px;
+	background-color:orange;
+	
+}

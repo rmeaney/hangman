@@ -1,0 +1,410 @@
+<html>
+
+<head>
+<link rel ="stylesheet" type="text/css" href ="assets/css/reset.css">
+<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Ultra" rel="stylesheet">
+<link rel ="stylesheet" type="text/css" href ="assets/css/style.css">
+<style>
+.tileStyle{
+	width:30px;
+	height:30px;
+	border:1px solid black;
+	background-color:green;
+	float:left;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+.blankStyle{
+	width:30px;
+	height:30px;
+	background-color:orange;
+	float:left;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+.fixer{
+	width:100%;
+	height:10px;
+	clear:both;
+	/*font-family: 'Alfa Slab One', cursive;
+	font-family: 'Ultra', serif;*/
+}
+.spaceClass{
+	color:blue;
+}
+.gameBoard{
+	color:red;
+	font-size:20px;
+	font-family: 'Ultra', serif;
+}
+</style>
+
+</head>
+<body>
+<header class ="westHeader"></header>
+
+<div class ="gameWrapper">
+	<div class ="gameLCol">
+		<div class ="gameLColInner">
+			<p class ="wantedText">Wanted!</p>
+			<div id="guessPic">
+			</div>
+			<p id ="victoryTitle">Name That Film!</p>
+			</div>
+	</div>
+	<div class ="gameRCol">
+		<h2>Click New game, and press and key to play!</h2>
+		<div id ="gameOver"></div>
+		<hr>
+		<div id ="gameStats">
+			<div class ="livesBox">
+				<p>Wins: </p>
+				<p id = "winTotals">0</p>
+			</div>
+			<div class ="livesBox">
+				<p>Losses: </p>
+				<p id = "lossTotals">0</p>
+				</div>
+		</div>
+		<div class ="livesBox">
+			<p>Lives: </p>
+			<p id ="lives">0</p>
+		</div>
+		<div class ="livesBox">
+			<p>score: </p>
+			<p id = "scoreTotal">0</p>
+		</div>
+		<div class ="wordTilesBorder">
+			<div class ="wordTilesWrapper">
+				<div id = "wordTiles" class = "gameBoard"></div>
+			</div>
+		</div>
+		<div id ="demo"></div>
+		<div id ="output"></div>
+		<p>Letters Still Available</p>
+		<p id ="lettersStillAvailable"></p>
+		<p>DUDS!</p>
+		<p id ="lettersUsed"></p>
+		<button onclick ="resetGame()">New Game</button>
+	</div>
+
+	<div id ="testThing"></div>
+<!--close gameWrapper-->
+</div>
+<footer class ="westFooter">
+<h4>All Rights Reserved (except for the movie pics... and sounds Those I dont own, but don't tell anyone.)</h4>
+<a href = "www.rickmeaney.com"><h4>Go back to Portfolio</h4></a></footer>
+<script>
+
+
+var remainingLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+
+var removedLetters =[];
+var wordList = ["django", "the#good#the#bad#and#the#ugly", "a#fistful#of#dollars","for#a#few#dollars#more","once#upon#a#time#in#the#west","the#wild#bunch","pale#rider"];
+var titleList =["Django", "The Good The Bad And The Ugly", "A Fistful of Dollars", "For a few Dollars More", "Once Upon a Time in the West", "The Wild Bunch", "Pale Rider"];
+var photoList = [1, 2, 3, 4, 5, 6, 7];
+var selectedWord;
+var scoreList =[6, 12, 10, 10, 13, 11, 7];
+var gameOn = false;
+
+
+var livesRemaining = 12;
+var score = 0;
+var wordWorth = 0;
+var photoNum = 0;
+console.log(photoNum);
+var titlePicked=0;
+var wins = 0;
+var losses = 0;
+
+
+function updateWins(){
+	document.getElementById("winTotals").innerHTML = wins;
+}
+function updateLosses(){
+	document.getElementById("lossTotals").innerHTML = losses;
+}
+
+
+
+function chooseAWord(){
+	var masterNumber = [Math.floor(Math.random() * wordList.length)];
+	selectedWord = wordList[masterNumber];
+	//console.log(wordList[Math.floor(Math.random() * wordList.length)]);
+	wordsWorth = scoreList[masterNumber];
+	titlePicked = titleList[masterNumber];
+	photoNum = photoList[masterNumber];
+	console.log("wordsWorth: " + wordsWorth);
+	alert(photoNum);
+
+}
+
+
+//chooseAWord();
+
+
+/*function buildTiles(){ 
+  // create a new div element 
+  // and give it some content 
+  var splitWord = selectedWord.split("");
+  for(i = 0; i < splitWord.length; i++){
+  	if (splitWord[i] != '#'){
+  		 // var newTile = document.createElement("div"); 
+  		//var newContent = document.createTextNode(""); 
+  		  //newTile.appendChild(newContent); //add the text node to the newly created div.
+
+		document.getElementById("wordTiles").innerHTML += '<div class="tileStyle" id="' + splitWord[i] + '"></div>';
+
+			wordWorth++;
+			
+
+
+  		// add the newly created element and its content into the DOM 
+  		//var currentDiv = document.getElementById("wordTiles");  
+   		//currentDiv.appendChild(newTile, currentDiv);
+   
+  		// newTile.setAttribute("class", "tileStyle");
+  			}else if(splitWord[i] == '#'){
+  				var blankTile = document.createElement("div"); 
+  				var spaceContent = document.createTextNode("");
+  				blankTile.appendChild(spaceContent);
+
+  				document.getElementById("wordTiles").innerHTML += '<div class="blankStyle" id="' + splitWord[i] + '"></div>';
+  			}
+  		}
+}*/
+
+//buildTiles();
+
+
+function keyPressed(){
+	checkPlayerChoiceNew();
+	keepingScore();
+}
+
+var playerGuess = document.onkeyup = function myKeyDown(event){
+	playerGuess = event.key;
+	if(gameOn==true){
+		keyPressed();
+		//alert(playerGuess);
+
+	}else{
+
+	}
+}
+
+
+function displayAvailableLetters(){
+	document.getElementById("lettersStillAvailable").innerHTML = remainingLetters;
+	//console.log(remainingLetters);
+	
+}
+
+function displayRemovedLetters(){
+	document.getElementById("lettersUsed").innerHTML = removedLetters;
+}
+
+
+function updateScore(){
+	document.getElementById("scoreTotal").innerHTML = score;
+}
+
+
+
+
+//var selectedWord ="food";
+
+
+var displayString = [];
+var outputEle = document.getElementById("wordTiles");
+var div = document.createElement('div');
+
+
+function createDisplayString(){
+///Before the function start
+//var displayString = [];
+var spacerText = "<p class = spaceClass></p>"
+for(var i = 0; i < selectedWord.length; i++){
+  //document.getElementById("wordTiles").innerHTML += '<div class="tileStyle" id="' + [i] + '"></div>';
+  if(selectedWord[i]=="#"){
+  displayString[i] = '\u25ca';
+  
+
+}else{
+	displayString[i] = "_";
+	
+}
+	
+	
+}
+
+var outputEle = document.getElementById("wordTiles");
+var div = document.createElement('div');
+div.innerText = displayString.join(" ");
+
+//
+outputEle.appendChild(div);
+
+
+
+///Before the function END
+checkPlayerChoiceNew();
+}
+
+
+
+function checkPlayerChoiceNew(){
+
+  var newWord = "";
+  var regExp;
+  var regExp = new RegExp(playerGuess,'ig')
+
+
+	selectedWord.replace(regExp, function(value, index){  
+    //look here
+    displayString[index] = value;
+   
+    return value;  
+  }); 
+  
+   
+
+  outputEle.appendChild(div);
+  newWord = displayString.join("");
+  //if(score == wordWorth){ alert("You Won the game"); }
+  outputEle.innerText = displayString.join(" ");  
+}
+/*checkPlayerChoiceNew('o');
+checkPlayerChoiceNew('g');
+checkPlayerChoiceNew('d');
+checkPlayerChoiceNew('f');*/
+
+
+function keepingScore(){
+	var choice = new RegExp(playerGuess);
+	var compareWord = choice.test(selectedWord.toLowerCase());
+	var compareAlphabet = choice.test(remainingLetters);
+	var compareRemovedList = choice.test(removedLetters);
+
+	if(compareWord == true && compareAlphabet == true ){
+		document.getElementById("demo").innerHTML = playerGuess;
+		
+		remainingLetters.splice(remainingLetters.indexOf(playerGuess),1);
+		displayAvailableLetters();
+		displayRemovedLetters();
+		score++;
+		updateScore();
+		endGameConditions()				
+
+		
+	}else if(compareWord == true && compareAlphabet == false){
+		document.getElementById("demo").innerHTML = "Already tried that one";
+	}else if(compareWord == false && compareAlphabet == true){
+		livesRemaining--;
+		document.getElementById("lives").innerHTML = livesRemaining;
+		removedLetters.push(playerGuess.toLowerCase());
+		remainingLetters.splice(remainingLetters.indexOf(playerGuess),1);
+		updateScore();
+		endGameConditions();
+		
+		displayAvailableLetters();
+		displayRemovedLetters();
+	}else if (compareWord == false && compareAlphabet == false && compareRemovedList == true){
+		document.getElementById("demo").innerHTML = "Already tried that one ;)";
+	}else if (compareWord == false && compareAlphabet == false && compareRemovedList == true){
+
+	}else{
+		/*livesRemaining--;
+		document.getElementById("lives").innerHTML = livesRemaining;
+		removedLetters.push(playerGuess.toLowerCase());
+		updateScore();
+		checkScore();
+		displayAvailableLetters();
+		displayRemovedLetters();*/
+		document.getElementById("demo").innerHTML = "Not a Valid Key";
+	}
+}
+var photoCode = "url(assets/images/cover_" + titlePicked + ".jpg)";
+function endGameConditions(){
+	if(score == wordsWorth && livesRemaining > 0){
+		document.getElementById("gameOver").innerHTML = "WINNER! Congratulations!!!";
+		document.getElementById("victoryTitle").innerHTML = titlePicked;
+		document.getElementById('guessPic').style.backgroundImage = photoCode;
+		//document.body.style.background-image = photoCode;
+		//document.body.style.backgroundImage = "url('img_tree.png')";
+		wins++;
+		updateWins();
+		gameOn=false;
+
+	}else if (livesRemaining == 0){
+		livesRemaining == -1;
+		document.getElementById("gameOver").innerHTML = "You have failed!";
+		losses++;
+		updateLosses();
+		gameOn=false;
+	}else{
+		document.getElementById("gameOver").innerHTML = "Good Luck!";
+	}
+}
+
+
+
+
+function refreshAlphabet(){
+	remainingLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	displayAvailableLetters();
+}
+
+function removeGames(){
+	document.getElementById("wordTiles").innerHTML = "";
+	document.getElementById('wordTiles').content = "";
+	//document.getElementById.remove('outputEle');
+	//outputEle = null;
+	displayString=[];
+	//div=null;
+	//regExp=null;
+
+}
+function fromOrbit(){
+	wordTiles.remove();
+}
+function createWordTilesDiv(){
+	/*var wordTilesBack = document.worldTilesHolder.createElement("div"); 
+	wordTilesBack.id +="wordTiles";
+	document.worldTilesHolder.appendChild(wordTiles);*/
+
+	document.getElementById("wordTilesHolder").innerHTML += '<div class="wordTiles" id ="wordTiles"></div>';
+}
+
+
+
+function resetGame() {
+	livesRemaining = 6;
+	score =0;
+	updateScore();
+	wordWorth = 0;
+	document.getElementById("gameOver").innerHTML = "";
+	titlePicked=0;
+	//fromOrbit();
+	//createWordTilesDiv();
+	removeGames();
+	document.getElementById("lives").innerHTML = livesRemaining;
+	chooseAWord();
+	var outputEle = document.getElementById("wordTiles");
+	var displayString = [];
+	refreshAlphabet();
+	createDisplayString();
+	gameOn=true;
+}
+
+
+
+
+</script>
+</body>
+</html>
