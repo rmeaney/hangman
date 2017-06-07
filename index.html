@@ -377,6 +377,9 @@ function removeGames(){
 	//document.getElementById.remove('outputEle');
 	//outputEle = null;
 	displayString=[];
+	removedLetters=[];
+	playerGuess = null;
+
 	//div=null;
 	//regExp=null;
 
@@ -400,6 +403,7 @@ function resetGame() {
 	updateScore();
 	wordWorth = 0;
 	document.getElementById("gameOver").innerHTML = "";
+	var removedLetters =[];
 	titlePicked=0;
 	//fromOrbit();
 	//createWordTilesDiv();
@@ -409,6 +413,7 @@ function resetGame() {
 	var outputEle = document.getElementById("wordTiles");
 	var displayString = [];
 	refreshAlphabet();
+	displayRemovedLetters();
 	createDisplayString();
 	gameOn=true;
 }
