@@ -344,7 +344,7 @@ function endGameConditions(){
 		document.getElementById("victoryTitle").innerHTML = titlePicked;
 		document.getElementById('guessPic').style.backgroundImage = photoNum;
 
-		document.getElementById("guessPic").style.background = '../images/cover_1.jpg';
+		
 
 		//document.body.style.background-image = photoCode;
 		//document.body.style.backgroundImage = "url('img_tree.png')";
@@ -415,6 +415,7 @@ function resetGame() {
 	refreshAlphabet();
 	displayRemovedLetters();
 	createDisplayString();
+	document.getElementById('guessPic').style.backgroundImage = "url('assets/images/wantedBlank-01.jpg')";
 	gameOn=true;
 }
 
