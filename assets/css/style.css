@@ -8,8 +8,8 @@ body{
 	width:100%;
 	height:100%;
 	padding:0px;
-	margin:0px;
-	background:url(../images/backdrop.jpg) no-repeat center left fixed;
+	margin:0px;    
+	background:url('../images/backdrop.jpg') no-repeat center left fixed;
 
 	  
         -webkit-background-size: cover;
