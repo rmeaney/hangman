@@ -46,14 +46,24 @@ h4{
 }
 .westHeader{
 	width:100%;
-	height:100px;
-	background-color:green;
+	height:20px;
+	background-color:black;
+}
+.logo{
+	width:350px;
+	height:211px;
+	background-image:url('../images/logo-01.png');
+	margin:0 auto 0 auto;
+	position:relative;
+	z-index: 4;
+
 }
 .gameWrapper{
 	width:70%;
-	height:600px;
-	border:1px solid black;
+	min-height:700px;
+	
 	margin:0px auto 0px auto;
+	
 }
 .gameLCol{
 	width:30%;
@@ -98,6 +108,13 @@ h4{
 	text-align:center;
 	margin-top:30px;
 }
+.lColOrnament{
+	width:245px;
+	height:12px;
+	background-image:url('../images/ornament01.png');
+	margin:0 auto 0 auto;
+
+}
 .gameRCol{
 	width:70%;
 	height:100%;
@@ -118,7 +135,7 @@ h4{
 }
 .gameContent{
 	width:100%;
-
+	
 	margin:0px auto 0px auto;
 }
 .wordTilesBorder{
@@ -154,23 +171,41 @@ border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 fill round
 
 	
 }
+#gameStats{
+	width:95%;
+	margin:0 auto 0 auto;
+
+}
 .livesBox{
 	background-image:url(../images/boxBackDrop-01.png);
 	width:150px;
 	height:57px;
 	color:white;
+	float:left;
+
 }
 .livesBox p{
 	font-family:'Alfa Slab One', cursive;
 	padding-top:10px;
 }
+.livesBoxFixer{
+	clear:both;
+	width:100%;
+	height:10px;
+	
+	position:relative;
+	z-index:100;
+}
 
 
 .westFooter{
+	clear:both;
 	width:100%;
 	height:100px;
 	background-color:black;
 		color:white;
+		position:relative;
+		bottom:0px;
 
 
 }
@@ -187,6 +222,21 @@ h4{
 
 
 	text-align: center;
+
+}
+#newGameButton{
+	width:201px;
+	height:77px;
+	background-image: url('../images/newGameNormal-01.png');
+	  background-color: Transparent;
+	  border:none;
+	  padding-bottom:100px;
+	  background-repeat: no-repeat;
+
+}
+#newGameButton:hover{
+	background-image: url('../images/newGameHover-01.png');
+	  
 
 }
 .westFooter a{

@@ -45,7 +45,9 @@
 
 </head>
 <body>
-<header class ="westHeader"></header>
+<header class ="westHeader">
+	
+</header>
 
 <div class ="gameWrapper">
 	<div class ="gameLCol">
@@ -54,9 +56,12 @@
 			<div id="guessPic">
 			</div>
 			<p id ="victoryTitle">Name That Film!</p>
-			</div>
+			<div class ="lColOrnament"></div>
+		</div>
+			
 	</div>
 	<div class ="gameRCol">
+	<div class ="logo"></div>
 		<h2>Click New game, and press and key to play!</h2>
 		<div id ="gameOver"></div>
 		<hr>
@@ -68,6 +73,7 @@
 			<div class ="livesBox">
 				<p>Losses: </p>
 				<p id = "lossTotals">0</p>
+
 				</div>
 		</div>
 		<div class ="livesBox">
@@ -78,6 +84,7 @@
 			<p>score: </p>
 			<p id = "scoreTotal">0</p>
 		</div>
+		<div class = "livesBoxFixer"></div>
 		<div class ="wordTilesBorder">
 			<div class ="wordTilesWrapper">
 				<div id = "wordTiles" class = "gameBoard"></div>
@@ -89,7 +96,7 @@
 		<p id ="lettersStillAvailable"></p>
 		<p>DUDS!</p>
 		<p id ="lettersUsed"></p>
-		<button onclick ="resetGame()">New Game</button>
+		<button id ="newGameButton" onclick ="resetGame()"></button>
 	</div>
 
 	<div id ="testThing"></div>
