@@ -69,13 +69,18 @@ h4{
 	width:92%;
 	height:92%;
 	margin:auto;
-	background-color:#ffffff;
+	background:url('../images/oldPaperTexture2.jpg')no-repeat left center fixed;
+	  
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
 #guessPic{
 	width:200px;
 	height:200px;
 	margin:20px auto 0 auto;
-	background:url(../images/wantedBlank-01.jpg);
+	background-image:url(../images/wantedBlank-01.jpg);
 
 }
 #victoryTitle{

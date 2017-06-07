@@ -107,7 +107,8 @@ var remainingLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n",
 var removedLetters =[];
 var wordList = ["django", "the#good#the#bad#and#the#ugly", "a#fistful#of#dollars","for#a#few#dollars#more","once#upon#a#time#in#the#west","the#wild#bunch","pale#rider"];
 var titleList =["Django", "The Good The Bad And The Ugly", "A Fistful of Dollars", "For a few Dollars More", "Once Upon a Time in the West", "The Wild Bunch", "Pale Rider"];
-var photoList = [1, 2, 3, 4, 5, 6, 7];
+var photoList = ['url(' + 'assets/images/cover_1.jpg' + ')', 'url(' + 'assets/images/cover_2.jpg' + ')', 'url(' + 'assets/images/cover_3.jpg' + ')', 'url(' + 'assets/images/cover_4.jpg' + ')', 'url(' + 'assets/images/cover_5.jpg' + ')', 'url(' + 'assets/images/cover_6.jpg' + ')', 'url(' + 'assets/images/cover_7.jpg' + ')'];
+
 var selectedWord;
 var scoreList =[6, 12, 10, 10, 13, 11, 7];
 var gameOn = false;
@@ -116,8 +117,8 @@ var gameOn = false;
 var livesRemaining = 12;
 var score = 0;
 var wordWorth = 0;
-var photoNum = 0;
-console.log(photoNum);
+var photoNum;
+
 var titlePicked=0;
 var wins = 0;
 var losses = 0;
@@ -139,8 +140,7 @@ function chooseAWord(){
 	wordsWorth = scoreList[masterNumber];
 	titlePicked = titleList[masterNumber];
 	photoNum = photoList[masterNumber];
-	console.log("wordsWorth: " + wordsWorth);
-	alert(photoNum);
+	
 
 }
 
@@ -329,12 +329,16 @@ function keepingScore(){
 		document.getElementById("demo").innerHTML = "Not a Valid Key";
 	}
 }
-var photoCode = "url(assets/images/cover_" + titlePicked + ".jpg)";
+//var photoCode = "url(assets/images/cover_1.jpg)";
+
 function endGameConditions(){
 	if(score == wordsWorth && livesRemaining > 0){
 		document.getElementById("gameOver").innerHTML = "WINNER! Congratulations!!!";
 		document.getElementById("victoryTitle").innerHTML = titlePicked;
-		document.getElementById('guessPic').style.backgroundImage = photoCode;
+		document.getElementById('guessPic').style.backgroundImage = photoNum;
+
+		document.getElementById("guessPic").style.background = '../images/cover_1.jpg';
+
 		//document.body.style.background-image = photoCode;
 		//document.body.style.backgroundImage = "url('img_tree.png')";
 		wins++;
