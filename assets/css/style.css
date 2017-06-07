@@ -234,7 +234,7 @@ h4{
 	  background-repeat: no-repeat;
 
 }
-#newGameButton :hover{
+#newGameButton:hover{
 	background-image: url('../images/newGameHover-01.png');
 	  
 
