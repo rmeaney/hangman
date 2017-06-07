@@ -9,7 +9,7 @@ body{
 	height:100%;
 	padding:0px;
 	margin:0px;    
-	background:url('../images/backdrop.jpg') no-repeat center left fixed;
+	background:url('../images/backDrop.jpg') no-repeat center left fixed;
 
 	  
         -webkit-background-size: cover;
