@@ -92,9 +92,9 @@
 		</div>
 		<div id ="demo"></div>
 		<div id ="output"></div>
-		<p>Letters Still Available</p>
+		<p class ="outputText">Letters Still Available</p>
 		<p id ="lettersStillAvailable"></p>
-		<p>DUDS!</p>
+		<p class ="outputText">DUDS!</p>
 		<p id ="lettersUsed"></p>
 		<button id ="newGameButton" onclick ="resetGame()"></button>
 	</div>
@@ -106,7 +106,12 @@
 <h4>All Rights Reserved (except for the movie pics... and sounds Those I dont own, but don't tell anyone.)</h4>
 <a href = "www.rickmeaney.com"><h4>Go back to Portfolio</h4></a></footer>
 <script>
+// define audio
+var defeatAudio = new Audio();
+defeatAudio.src = "assets/audio/defeat.mp3";
 
+var djangoMusic = new Audio();
+djangoMusic.src = "assets/audio/django.mp3";
 
 var remainingLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
@@ -115,6 +120,7 @@ var removedLetters =[];
 var wordList = ["django", "the#good#the#bad#and#the#ugly", "a#fistful#of#dollars","for#a#few#dollars#more","once#upon#a#time#in#the#west","the#wild#bunch","pale#rider"];
 var titleList =["Django", "The Good The Bad And The Ugly", "A Fistful of Dollars", "For a few Dollars More", "Once Upon a Time in the West", "The Wild Bunch", "Pale Rider"];
 var photoList = ['url(' + 'assets/images/cover_1.jpg' + ')', 'url(' + 'assets/images/cover_2.jpg' + ')', 'url(' + 'assets/images/cover_3.jpg' + ')', 'url(' + 'assets/images/cover_4.jpg' + ')', 'url(' + 'assets/images/cover_5.jpg' + ')', 'url(' + 'assets/images/cover_6.jpg' + ')', 'url(' + 'assets/images/cover_7.jpg' + ')'];
+var musicList = ['assets/audio/django.mp3','assets/audio/theGoodTheBadAndTheUgly.mp3','assets/audio/fistfulOfDollars.mp3' ,'assets/audio/forAFewDollarsMore.mp3', 'assets/audio/onceUponATimeInTheWest.mp3','assets/audio/theWildBunch.mp3', 'assets/audio/paleRider.mp3'];
 
 var selectedWord;
 var scoreList =[6, 12, 10, 10, 13, 11, 7];
@@ -125,10 +131,12 @@ var livesRemaining = 12;
 var score = 0;
 var wordWorth = 0;
 var photoNum;
+var musicNum;
 
 var titlePicked=0;
 var wins = 0;
 var losses = 0;
+var stopPlaying = false;
 
 
 function updateWins(){
@@ -147,6 +155,7 @@ function chooseAWord(){
 	wordsWorth = scoreList[masterNumber];
 	titlePicked = titleList[masterNumber];
 	photoNum = photoList[masterNumber];
+	musicNum = musicList[masterNumber];
 	
 
 }
@@ -297,6 +306,7 @@ function keepingScore(){
 	var compareWord = choice.test(selectedWord.toLowerCase());
 	var compareAlphabet = choice.test(remainingLetters);
 	var compareRemovedList = choice.test(removedLetters);
+	var audioElement;
 
 	if(compareWord == true && compareAlphabet == true ){
 		document.getElementById("demo").innerHTML = playerGuess;
@@ -337,12 +347,35 @@ function keepingScore(){
 	}
 }
 //var photoCode = "url(assets/images/cover_1.jpg)";
+/*function playMusic(){
+			
+			
+			musicChoice.play();
+			console.log('please play music')
+		}*/
+
+function turnOffThatRacket(){
+	stopPlaying = false;
+
+}
 
 function endGameConditions(){
 	if(score == wordsWorth && livesRemaining > 0){
 		document.getElementById("gameOver").innerHTML = "WINNER! Congratulations!!!";
 		document.getElementById("victoryTitle").innerHTML = titlePicked;
 		document.getElementById('guessPic').style.backgroundImage = photoNum;
+		stopPlaying = true;
+
+
+		var audioElement = document.createElement('audio');
+		audioElement.setAttribute('src', musicNum);
+		stopPlaying = true;
+		audioElement.play();
+		
+	
+
+
+
 
 		
 
@@ -357,11 +390,13 @@ function endGameConditions(){
 		document.getElementById("gameOver").innerHTML = "You have failed!";
 		losses++;
 		updateLosses();
+		defeatAudio.play();
 		gameOn=false;
 	}else{
 		document.getElementById("gameOver").innerHTML = "Good Luck!";
 	}
 }
+
 
 
 
@@ -405,10 +440,14 @@ function resetGame() {
 	document.getElementById("gameOver").innerHTML = "";
 	var removedLetters =[];
 	titlePicked=0;
+	musicNum = 0;
+	//console.log(audioElement);
+	
 	//fromOrbit();
 	//createWordTilesDiv();
 	removeGames();
 	document.getElementById("lives").innerHTML = livesRemaining;
+	document.getElementById("victoryTitle").innerHTML = 'Name That Film!';
 	chooseAWord();
 	var outputEle = document.getElementById("wordTiles");
 	var displayString = [];

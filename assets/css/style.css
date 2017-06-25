@@ -260,3 +260,28 @@ h4{
 	background-color:orange;
 	
 }
+#gameOver{
+	font-weight:bold;
+	font-size:14pt;
+	color:red;
+	font-family:arial;
+}
+#lettersStillAvailable{
+	font-weight:bold;
+	font-size:12pt;
+	color:orange;
+	font-family:arial;
+}
+#lettersUsed{
+	padding-bottom:10px;
+	font-weight:bold;
+	font-size:12pt;
+	font-family:arial;
+}
+.outputText{
+	padding-top:20px;
+	padding-bottom:10px;
+	font-weight:bold;
+	font-size:12pt;
+	font-family:arial;
+}
